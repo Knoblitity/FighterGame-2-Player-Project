@@ -200,14 +200,11 @@ public class PlayerMovement : MonoBehaviour
 
 	void Jump()
 	{
-		if (Input.GetKeyDown(jumpButton))
+		if (Input.GetKeyDown(jumpButton) && isJumping == false)
 		{
-			if (isJumping == false)
-			{
-				GetComponent<Rigidbody2D>().AddForce((Vector2.up * jumpHeight));
-				anim.SetBool("OnGround", false);
-				isJumping = true;
-			}
+			GetComponent<Rigidbody2D>().AddForce((Vector2.up * jumpHeight));
+			anim.SetBool("OnGround", false);
+			isJumping = true;
 		}
 	}
 
