@@ -8,8 +8,6 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 10f;
     Animator anim;
 
-	public bool working;
-	public bool test;
     //change array number to fix number of attacks.
     private float attackRate;
     bool[] attack = new bool[4];
