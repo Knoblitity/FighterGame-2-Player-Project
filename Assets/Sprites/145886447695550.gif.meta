@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7a2489c142d28264b8a6ef2c8b6cd58b
-timeCreated: 1460085152
+timeCreated: 1461192589
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -1057,6 +1057,83 @@ TextureImporter:
         y: 245
         width: 22
         height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_83
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 564
+        width: 28
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_84
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 564
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_85
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 566
+        width: 42
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_86
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 566
+        width: 39
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_87
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 566
+        width: 40
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_88
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 563
+        width: 28
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_89
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 560
+        width: 20
+        height: 35
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -10,9 +10,9 @@ public class PlayerMovement : MonoBehaviour
 
     //change array number to fix number of attacks.
     private float attackRate;
-    bool[] attack = new bool[4];
-    float[] attackTimer = new float[4]; // These arrays
-    int[] timesPressed = new int[4];
+    bool[] attack = new bool[5];
+    float[] attackTimer = new float[5]; // These arrays
+    int[] timesPressed = new int[5];
 
     public Transform firePoint;
     public GameObject fireBall;
@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
 	public KeyCode attackOne;
 	public KeyCode attackTwo;
 	public KeyCode attackThree;
+	public KeyCode attackFour;
 	public KeyCode leftMove;
 	public KeyCode rightMove;
 	public KeyCode jumpButton;
@@ -55,6 +56,9 @@ public class PlayerMovement : MonoBehaviour
 		}
 		if (dashButton == KeyCode.None) {
 			dashButton = KeyCode.V;
+		}
+		if (attackFour == KeyCode.None) {
+			attackFour = KeyCode.J;
 		}
     }
 
@@ -166,6 +170,29 @@ public class PlayerMovement : MonoBehaviour
 				anim.SetBool("Attack3", false);
             }
         }
+		//JumpingHeavyPunch
+		if (Input.GetKeyDown(attackFour))
+		{
+			if (anim.GetFloat ("Movement") < 0.1f)
+			{
+				attack [4] = true;
+				attackTimer [4] = 0;
+				timesPressed [4]++;
+				anim.SetBool ("Attack4", true);
+			}
+		}
+		if (attack[4])
+		{
+			attackRate = 0.3f;
+			attackTimer[4] += Time.deltaTime;
+			if (attackTimer[4] > attackRate || timesPressed[4] >= 3)
+			{
+				attackTimer[4] = 0;
+				attack[4] = false;
+				timesPressed[4] = 0;
+				anim.SetBool("Attack4", false);
+			}
+		}
 
     }
 
