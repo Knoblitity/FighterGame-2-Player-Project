@@ -191,16 +191,16 @@ public class PlayerMovement : MonoBehaviour
 			{
 				anim.SetFloat ("Movement", 0f);
 			}
-
-			if (Input.GetKeyDown (dashButton) && Input.GetKey (rightMove))
-			{
-				StartCoroutine (DashRight ());
-			}
 		}
-			if (Input.GetKeyDown (dashButton) && Input.GetKey (leftMove))
-			{
-				StartCoroutine (DashLeft ());
-			}
+		if (Input.GetKeyDown (dashButton) && Input.GetKey (rightMove))
+		{
+			StartCoroutine (DashRight ());
+		}
+	
+		if (Input.GetKeyDown (dashButton) && Input.GetKey (leftMove))
+		{
+			StartCoroutine (DashLeft ());
+		}
 		
     }
 	void Jump()
@@ -240,14 +240,14 @@ public class PlayerMovement : MonoBehaviour
 		
 	IEnumerator DashRight()
 	{
-		GetComponent<Rigidbody2D> ().AddForce ((Vector2.right * 1000));
+		GetComponent<Rigidbody2D> ().AddForce ((Vector2.right * 500));
 		yield return new WaitForSeconds (0.25f);
 		GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 	}
 
 	IEnumerator DashLeft()
 	{
-		GetComponent<Rigidbody2D> ().AddForce ((Vector2.left * 1000));
+		GetComponent<Rigidbody2D> ().AddForce ((Vector2.left * 500));
 		yield return new WaitForSeconds (0.25f);
 		GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 	}
