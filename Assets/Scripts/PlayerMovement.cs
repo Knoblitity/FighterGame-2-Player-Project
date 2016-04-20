@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     public float speed = 10f;
     Animator anim;
+	public bool work;
 
     //change array number to fix number of attacks.
     private float attackRate;
