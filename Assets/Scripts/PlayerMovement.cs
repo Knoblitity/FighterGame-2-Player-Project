@@ -170,43 +170,63 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    void Movement()
+     void Movement()
     {
+		if (isJumping == false) 
+		{
+			
+			if (Input.GetKey (rightMove)) 
+			{
+				transform.Translate (Vector2.right * speed * Time.deltaTime);
+				transform.eulerAngles = new Vector2 (0, 0);
+				anim.SetFloat ("Movement", 1f);
+			}
+			else if (Input.GetKey (leftMove))
+			{
+				transform.Translate (Vector2.right * speed * Time.deltaTime);
+				transform.eulerAngles = new Vector3 (0, 180);
+				anim.SetFloat ("Movement", 1f);
+			}
+			else
+			{
+				anim.SetFloat ("Movement", 0f);
+			}
 
-		if (Input.GetKey(rightMove))
-        {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
-            transform.eulerAngles = new Vector2(0, 0);
-            anim.SetFloat("Movement", 1f);
-        }
-
-		else if (Input.GetKey(leftMove))
-        {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
-            transform.eulerAngles = new Vector3(0, 180);
-            anim.SetFloat("Movement", 1f);
-        }
-        else
-        {
-            anim.SetFloat("Movement", 0f);
-        }
-
-		if (Input.GetKeyDown (dashButton) && Input.GetKey(rightMove)) {
-			StartCoroutine (DashRight ());
+			if (Input.GetKeyDown (dashButton) && Input.GetKey (rightMove))
+			{
+				StartCoroutine (DashRight ());
+			}
 		}
-		if (Input.GetKeyDown (dashButton) && Input.GetKey(leftMove)) {
-			StartCoroutine (DashLeft ());
-		}
+			if (Input.GetKeyDown (dashButton) && Input.GetKey (leftMove))
+			{
+				StartCoroutine (DashLeft ());
+			}
+		
     }
-
 	void Jump()
 	{
-		if (Input.GetKeyDown(jumpButton) && isJumping == false)
+		if (Input.GetKeyDown (jumpButton) && Input.GetKeyDown (rightMove) && isJumping == false) 
 		{
-			GetComponent<Rigidbody2D>().AddForce((Vector2.up * jumpHeight));
-			anim.SetBool("OnGround", false);
+			GetComponent<Rigidbody2D> ().AddForce ((Vector2.up * jumpHeight));
+			GetComponent<Rigidbody2D> ().velocity = new Vector2( Mathf.Cos(45)*4, Mathf.Sin(45));
+			anim.SetBool ("OnGround", false);
 			isJumping = true;
 		}
+		else if (Input.GetKeyDown (jumpButton) && Input.GetKeyDown (leftMove) && isJumping == false) 
+		{
+			GetComponent<Rigidbody2D> ().AddForce ((Vector2.up * jumpHeight));
+			GetComponent<Rigidbody2D> ().velocity = new Vector2( Mathf.Cos(45)*-4, Mathf.Sin(45));
+			anim.SetBool ("OnGround", false);
+			isJumping = true;
+		}
+
+		else if (Input.GetKeyDown (jumpButton) && isJumping == false) 
+		{
+			GetComponent<Rigidbody2D> ().AddForce ((Vector2.up * jumpHeight));
+			anim.SetBool ("OnGround", false);
+			isJumping = true;
+		}
+
 	}
 
 	void OnCollisionEnter2D(Collision2D col)
