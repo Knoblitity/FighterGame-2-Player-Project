@@ -98,6 +98,14 @@ public class HealthControl : MonoBehaviour {
 				knockBack(1, 0);
 			}
 		}
+		if (coll.gameObject.CompareTag("JumpingHeavyPunch"))
+		{
+			if (canDamage)
+			{
+				StartCoroutine(ApplyDamage(10, 0.3f));
+				knockBack(3, 0);
+			}
+		}
     }
 
     public void AddHealth(float amount) {
