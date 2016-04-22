@@ -98,7 +98,7 @@ public class HealthControl : MonoBehaviour {
 				knockBack(1, 0);
 			}
 		}
-		if (coll.gameObject.CompareTag("JumpingHeavyPunch"))
+		if (coll.gameObject.CompareTag("JumpHeavy"))
 		{
 			if (canDamage)
 			{
