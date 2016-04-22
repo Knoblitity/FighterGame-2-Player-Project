@@ -171,15 +171,17 @@ public class PlayerMovement : MonoBehaviour
 				anim.SetBool("Attack3", false);
             }
         }
-		//JumpingHeavyPunch
+		//JumpingHeavyPunch (To Make it Work in the Air, Now modify JumpingAttacks to the number of the Attack you want,
+		// e.g JumpingHeavyPunch is now Float 1.0f, while regular jumping is 0.0f.
 		if (Input.GetKeyDown(attackFour))
 		{
-			if (anim.GetFloat ("Movement") < 0.1f)
+			if ((anim.GetFloat ("Movement") < 0.1f && anim.GetBool("OnGround") == false)
+				|| anim.GetBool("OnGround") == false && anim.GetFloat("Movement") > 0.1f)
 			{
 				attack [4] = true;
 				attackTimer [4] = 0;
 				timesPressed [4]++;
-				anim.SetBool ("Attack4", true);
+				anim.SetFloat ("JumpingAttacks", 1.0f);
 			}
 		}
 		if (attack[4])
@@ -191,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
 				attackTimer[4] = 0;
 				attack[4] = false;
 				timesPressed[4] = 0;
-				anim.SetBool("Attack4", false);
+				anim.SetFloat("JumpingAttacks", 0.0f);
 			}
 		}
 
