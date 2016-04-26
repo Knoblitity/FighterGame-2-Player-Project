@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     bool[] attack = new bool[5];
     float[] attackTimer = new float[5]; // These arrays
     int[] timesPressed = new int[5];
+	public bool canJumpingAttack = true;
 
     public Transform firePoint;
     public GameObject fireBall;
@@ -175,7 +176,7 @@ public class PlayerMovement : MonoBehaviour
         }
 		//JumpingHeavyPunch (To Make it Work in the Air, Now modify JumpingAttacks to the number of the Attack you want,
 		// e.g JumpingHeavyPunch is now Float 1.0f, while regular jumping is 0.0f.
-		if (Input.GetKeyDown(attackFour))
+		if (Input.GetKeyDown(attackFour) && canJumpingAttack == true)
 		{
 			if ((anim.GetFloat ("Movement") < 0.1f && anim.GetBool("OnGround") == false)
 				|| anim.GetBool("OnGround") == false && anim.GetFloat("Movement") > 0.1f)
@@ -196,6 +197,7 @@ public class PlayerMovement : MonoBehaviour
 				attack[4] = false;
 				timesPressed[4] = 0;
 				anim.SetFloat("JumpingAttacks", 0.0f);
+				canJumpingAttack = false;
 			}
 		}
 
@@ -242,6 +244,7 @@ public class PlayerMovement : MonoBehaviour
 			GetComponent<Rigidbody2D> ().velocity = new Vector2( Mathf.Cos(45)*4, Mathf.Sin(45));
 			anim.SetBool ("OnGround", false);
 			isJumping = true;
+			canJumpingAttack = true;
 		}
 		else if (Input.GetKeyDown (jumpButton) && Input.GetKeyDown (leftMove) && isJumping == false) 
 		{
@@ -249,6 +252,7 @@ public class PlayerMovement : MonoBehaviour
 			GetComponent<Rigidbody2D> ().velocity = new Vector2( Mathf.Cos(45)*-4, Mathf.Sin(45));
 			anim.SetBool ("OnGround", false);
 			isJumping = true;
+			canJumpingAttack = true;
 		}
 
 		else if (Input.GetKeyDown (jumpButton) && isJumping == false) 
@@ -256,6 +260,7 @@ public class PlayerMovement : MonoBehaviour
 			GetComponent<Rigidbody2D> ().AddForce ((Vector2.up * jumpHeight));
 			anim.SetBool ("OnGround", false);
 			isJumping = true;
+			canJumpingAttack = true;
 		}
 
 	}
