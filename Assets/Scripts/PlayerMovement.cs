@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
 	public float jumpHeight;
 	public bool isJumping = false;
+	private bool canDash;
 
 	public KeyCode projectileShoot;
 	public KeyCode attackOne;
@@ -225,12 +226,28 @@ public class PlayerMovement : MonoBehaviour
 		}
 		if (Input.GetKeyDown (dashButton) && Input.GetKey (rightMove))
 		{
-			StartCoroutine (DashRight ());
+			if (isJumping && canDash) {
+				StartCoroutine (DashRight ());
+				canDash = false;
+			} 
+			else if (!isJumping)
+			{
+				StartCoroutine (DashRight ());
+			}
+
 		}
 	
 		if (Input.GetKeyDown (dashButton) && Input.GetKey (leftMove))
 		{
-			StartCoroutine (DashLeft ());
+			if (isJumping && canDash) {
+				StartCoroutine (DashLeft ());
+				canDash = false;
+			} 
+			else if (!isJumping)
+			{
+				StartCoroutine (DashLeft ());
+			}
+
 		}
 		
     }
@@ -265,6 +282,7 @@ public class PlayerMovement : MonoBehaviour
 		if(col.gameObject.tag == "Ground")
 		{
 			isJumping = false;
+			canDash = true;
 			anim.SetBool("OnGround", true);
 		}
 	}
