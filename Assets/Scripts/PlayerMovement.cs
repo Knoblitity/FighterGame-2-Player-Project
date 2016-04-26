@@ -6,8 +6,8 @@ public class PlayerMovement : MonoBehaviour
 
     // Update is called once per frame
     public float speed = 10f;
+
     Animator anim;
-	public bool work;
 
     //change array number to fix number of attacks.
     private float attackRate;
@@ -30,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
 	public KeyCode rightMove;
 	public KeyCode jumpButton;
 	public KeyCode dashButton;
+
+	public float dashDistance;
 
     void Start()
     {
@@ -269,15 +271,21 @@ public class PlayerMovement : MonoBehaviour
 		
 	IEnumerator DashRight()
 	{
-		GetComponent<Rigidbody2D> ().AddForce ((Vector2.right * 500));
+		GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+		GetComponent<Rigidbody2D> ().AddForce ((Vector2.right * dashDistance));
+		anim.SetBool ("Dashing", true);
 		yield return new WaitForSeconds (0.25f);
+		anim.SetBool ("Dashing", false);
 		GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 	}
 
 	IEnumerator DashLeft()
 	{
-		GetComponent<Rigidbody2D> ().AddForce ((Vector2.left * 500));
+		GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+		GetComponent<Rigidbody2D> ().AddForce ((Vector2.left * dashDistance));
+		anim.SetBool ("Dashing", true);
 		yield return new WaitForSeconds (0.25f);
+		anim.SetBool ("Dashing", false);
 		GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 	}
 }

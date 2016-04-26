@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7a2489c142d28264b8a6ef2c8b6cd58b
-timeCreated: 1461192589
+timeCreated: 1461610263
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -1134,6 +1134,83 @@ TextureImporter:
         y: 560
         width: 20
         height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_90
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1211
+        width: 26
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_91
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 1211
+        width: 34
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_92
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 1212
+        width: 35
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_93
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 1211
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_94
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1211
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_95
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 1211
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_96
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 1211
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
