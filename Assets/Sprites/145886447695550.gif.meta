@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7a2489c142d28264b8a6ef2c8b6cd58b
-timeCreated: 1461610263
+timeCreated: 1461695224
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -102,6 +102,18 @@ TextureImporter:
     21300190: 145886447695550_95
     21300192: 145886447695550_96
     21300194: 145886447695550_97
+    21300196: 145886447695550_98
+    21300198: 145886447695550_99
+    21300200: 145886447695550_100
+    21300202: 145886447695550_101
+    21300204: 145886447695550_102
+    21300206: 145886447695550_103
+    21300208: 145886447695550_104
+    21300210: 145886447695550_105
+    21300212: 145886447695550_106
+    21300214: 145886447695550_107
+    21300216: 145886447695550_108
+    21300218: 145886447695550_109
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -1211,6 +1223,156 @@ TextureImporter:
         y: 1211
         width: 24
         height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_97
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 212
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_98
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 212
+        width: 27
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_99
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 212
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 16.5}
+        - {x: -16, y: -1.5}
+        - {x: -1, y: -16.5}
+        - {x: 7, y: -16.5}
+        - {x: 16, y: -11.5}
+        - {x: 16, y: 1.5}
+        - {x: -1, y: 16.5}
+    - name: 145886447695550_100
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 214
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_101
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 216
+        width: 38
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_102
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 213
+        width: 42
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_103
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 213
+        width: 40
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_104
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 217
+        width: 40
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_105
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 218
+        width: 40
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_106
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 215
+        width: 41
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_107
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 217
+        width: 41
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_108
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 217
+        width: 42
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: 145886447695550_109
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 215
+        width: 42
+        height: 19
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
