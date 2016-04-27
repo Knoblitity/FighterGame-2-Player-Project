@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     float[] attackTimer = new float[5]; // These arrays
     int[] timesPressed = new int[5];
 	public bool canJumpingAttack = true;
+	public bool attacking = false;
 
     public Transform firePoint;
     public GameObject fireBall;
@@ -83,37 +84,42 @@ public class PlayerMovement : MonoBehaviour
         //StandMed
 		if (Input.GetKeyDown(attackOne))
         {
-            if (anim.GetFloat("Movement") < 0.1f) //Only allows this attack when not moving.
-            {
+            //if (anim.GetFloat("Movement") < 0.1f) //Only allows this attack when not moving.
+            //{
                 attack[0] = true;
                 attackTimer[0] = 0;
                 timesPressed[0]++;
                 anim.SetBool("Attack0", true);
-            }
+				attacking = true;
+
+            //}
         }
 
         if (attack[0])
         {
-            attackRate = 0.3f; //attack rate here works for StandMed.
+            attackRate = 0.5f; //attack rate here works for StandMed.
             attackTimer[0] += Time.deltaTime;
-            if (attackTimer[0] > attackRate || timesPressed[0] >= 3) //after 3 presses, attack animation cuts, but no one can hit that fast.
+            if (attackTimer[0] > attackRate || timesPressed[0] >= 7) //after 3 presses, attack animation cuts, but no one can hit that fast.
             {
                 attackTimer[0] = 0;
                 attack[0] = false;
                 timesPressed[0] = 0;
                 anim.SetBool("Attack0", false);
+				attacking = false;
+
             }
         }
         //StandHeavy
 		if (Input.GetKeyDown(attackTwo))
         {
-            if (anim.GetFloat("Movement") < 0.1f)
-            {
+            //if (anim.GetFloat("Movement") < 0.1f)
+            //{
                 attack[1] = true;
                 attackTimer[1] = 0;
                 timesPressed[1]++;
                 anim.SetBool("Attack1", true);
-            }
+				attacking = true;
+            //}
         }
         if (attack[1])
         {
@@ -125,30 +131,33 @@ public class PlayerMovement : MonoBehaviour
                 attack[1] = false;
                 timesPressed[1] = 0;
                 anim.SetBool("Attack1", false);
+				attacking = false;
             }
         }
         //LightKick
 		if (Input.GetKeyDown(attackThree))
         {
-            if (anim.GetFloat("Movement") < 0.1f)
-            {
+            //if (anim.GetFloat("Movement") < 0.1f)
+            //{
                 attack[2] = true;
                 attackTimer[2] = 0;
                 timesPressed[2]++;
                 anim.SetBool("Attack2", true);
-            }
+				attacking = true;
+            //}
         }
         if (attack[2])
         {
-            attackRate = 0.2f;
+            attackRate = 0.4f;
             attackTimer[2] += Time.deltaTime;
-            if (attackTimer[2] > attackRate || timesPressed[2] >= 3)
+            if (attackTimer[2] > attackRate || timesPressed[2] >= 6)
             {
                 attackTimer[2] = 0;
                 attack[2] = false;
                 timesPressed[2] = 0;
                 anim.SetBool("Attack2", false);
-            }
+				attacking = false;
+			}
         }
 		//FireballShoot
 		if (Input.GetKeyDown(projectileShoot))
@@ -159,6 +168,7 @@ public class PlayerMovement : MonoBehaviour
 				attackTimer [3] = 0;
 				timesPressed [3]++;
 				anim.SetBool ("Attack3", true);
+				attacking = true;
 			}
         }
         if (attack[3])
@@ -172,6 +182,7 @@ public class PlayerMovement : MonoBehaviour
                 attack[3] = false;
                 timesPressed[3] = 0;
 				anim.SetBool("Attack3", false);
+				attacking = false;
             }
         }
 		//JumpingHeavyPunch (To Make it Work in the Air, Now modify JumpingAttacks to the number of the Attack you want,
@@ -205,7 +216,7 @@ public class PlayerMovement : MonoBehaviour
 
      void Movement()
     {
-		if (isJumping == false) 
+		if (isJumping == false && attacking == false) 
 		{
 			
 			if (Input.GetKey (rightMove)) 
