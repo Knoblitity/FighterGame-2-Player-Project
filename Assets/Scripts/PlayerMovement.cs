@@ -184,7 +184,7 @@ public class PlayerMovement : MonoBehaviour
 				attack [4] = true;
 				attackTimer [4] = 0;
 				timesPressed [4]++;
-				anim.SetFloat ("JumpingAttacks", 1.0f);
+				anim.SetFloat ("JumpingAttacks", 0.5f);
 			}
 		}
 		if (attack[4])
@@ -291,9 +291,18 @@ public class PlayerMovement : MonoBehaviour
 	{
 		GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 		GetComponent<Rigidbody2D> ().AddForce ((Vector2.right * dashDistance));
-		anim.SetBool ("Dashing", true);
+		if (isJumping) {
+			transform.eulerAngles = new Vector3 (0, 180, 0);
+			anim.SetFloat ("JumpingAttacks", 1f);
+		} 
+		else 
+		{
+			anim.SetBool ("Dashing", true);
+		}
 		yield return new WaitForSeconds (0.25f);
 		anim.SetBool ("Dashing", false);
+		anim.SetFloat ("JumpingAttacks", 0.0f);
+		transform.eulerAngles = new Vector3 (0, 0, 0);
 		GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 	}
 
@@ -301,9 +310,18 @@ public class PlayerMovement : MonoBehaviour
 	{
 		GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 		GetComponent<Rigidbody2D> ().AddForce ((Vector2.left * dashDistance));
-		anim.SetBool ("Dashing", true);
+		if (isJumping) {
+			transform.eulerAngles = new Vector3 (0, 0, 0);
+			anim.SetFloat ("JumpingAttacks", 1f);
+		}
+		else 
+		{
+			anim.SetBool ("Dashing", true);
+		}
 		yield return new WaitForSeconds (0.25f);
 		anim.SetBool ("Dashing", false);
+		anim.SetFloat ("JumpingAttacks", 0.0f);
+		transform.eulerAngles = new Vector3 (0, 180, 0);
 		GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 	}
 }
