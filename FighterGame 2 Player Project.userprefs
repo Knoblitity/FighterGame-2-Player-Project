@@ -1,9 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerMovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/FireBallController.cs">
     <Files>
+<<<<<<< HEAD
+      <File FileName="Assets/Scripts/FireBallController.cs" Line="30" Column="42" />
+=======
       <File FileName="Assets/Scripts/PlayerMovement.cs" Line="283" Column="3" />
       <File FileName="Assets/Scripts/HealthControl.cs" Line="48" Column="30" />
+>>>>>>> origin/master
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

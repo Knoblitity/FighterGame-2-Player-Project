@@ -175,7 +175,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 		//JumpingHeavyPunch (To Make it Work in the Air, Now modify JumpingAttacks to the number of the Attack you want,
-		// e.g JumpingHeavyPunch is now Float 1.0f, while regular jumping is 0.0f.
+		// e.g JumpingHeavyPunch is now Float 0.5f, while regular jumping is 0.0f.
 		if (Input.GetKeyDown(attackFour))
 		{
 			if ((anim.GetFloat ("Movement") < 0.1f && anim.GetBool("OnGround") == false)

@@ -12,7 +12,9 @@ public class HealthControl : MonoBehaviour {
     //public float invTime; //Later for better control I can change this to Private, and edit the invTime depending on moves, allowing some moves
                           //to combo and others to not.
 
-    Rigidbody2D rigi;
+	public KeyCode blockButton;
+
+	Rigidbody2D rigi;
     float yRotation;
 
     Animator anim;
@@ -23,6 +25,10 @@ public class HealthControl : MonoBehaviour {
         ShowRestartDialog(false);
         rigi = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+		if (blockButton == KeyCode.None) {
+			blockButton = KeyCode.B;
+		}
         
     }
 	
@@ -30,6 +36,7 @@ public class HealthControl : MonoBehaviour {
 	void Update () {
 		CheckHealth ();
         yRotation = GameObject.FindGameObjectWithTag(playerTag).gameObject.transform.rotation.y;
+		Blocking ();
 	}
 
 	void CheckHealth() {
@@ -40,7 +47,13 @@ public class HealthControl : MonoBehaviour {
 		}
 	}
 
-    IEnumerator ApplyDamage(float dmg, float invTime)
+	void Blocking(){
+		if (Input.GetKey(blockButton)){
+			canDamage = false;
+		}
+	}
+    
+	IEnumerator ApplyDamage(float dmg, float invTime)
     {
         SubtractHealth(dmg);
         canDamage = false;
@@ -68,15 +81,18 @@ public class HealthControl : MonoBehaviour {
     {
         if (coll.gameObject.CompareTag("StandMed"))
         {
-            if (canDamage)
-            {
-                StartCoroutine(ApplyDamage(12, 0.75f));
-                knockBack(3, 5);
-            }
+			if (canDamage == false) {
+				StartCoroutine (ApplyDamage (0, 0.25f));
+				knockBack (1, 0);
+			} 
+			else {
+				StartCoroutine (ApplyDamage (12, 0.75f));
+				knockBack (3, 5);
+			}
         }
         if (coll.gameObject.CompareTag("StandHeavy"))
         {
-            if (canDamage)
+			if (canDamage)
             {
                 StartCoroutine(ApplyDamage(25, 1.2f));
                 knockBack(5, 10);
