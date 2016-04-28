@@ -32,11 +32,16 @@ public class PlayerMovement : MonoBehaviour
 	public KeyCode jumpButton;
 	public KeyCode dashButton;
 
+
 	public float dashDistance;
+
+
 
     void Start()
     {
         anim = GetComponent<Animator>();
+
+
 		if (projectileShoot == KeyCode.None) {
 			projectileShoot = KeyCode.U;
 		}
@@ -64,6 +69,9 @@ public class PlayerMovement : MonoBehaviour
 		if (attackFour == KeyCode.None) {
 			attackFour = KeyCode.J;
 		}
+
+
+
     }
 
     void Update()
@@ -80,7 +88,8 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void AttackInput()
     {
-        //StandMed
+
+		//StandMed
 		if (Input.GetKeyDown(attackOne))
         {
             if (anim.GetFloat("Movement") < 0.1f) //Only allows this attack when not moving.
