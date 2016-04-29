@@ -3,10 +3,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HealthControl.cs">
     <Files>
       <File FileName="Assets/Scripts/HealthControl.cs" Line="1" Column="1" />
-<<<<<<< Updated upstream
       <File FileName="Assets/Scripts/PlayerMovement.cs" Line="178" Column="44" />
-=======
->>>>>>> Stashed changes
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
