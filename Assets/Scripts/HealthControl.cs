@@ -8,35 +8,50 @@ public class HealthControl : MonoBehaviour {
 	public Image healthBar;
 	public float health; //between 0-100
 	public GameObject restartDialog;
-    public bool canDamage = true;
-    //public float invTime; //Later for better control I can change this to Private, and edit the invTime depending on moves, allowing some moves
-                          //to combo and others to not.
+	public bool canDamage = true;
+	//public float invTime; //Later for better control I can change this to Private, and edit the invTime depending on moves, allowing some moves
+	//to combo and others to not.
 
 	public KeyCode blockButton;
+	public bool isBlocking;
 
 	Rigidbody2D rigi;
-    float yRotation;
+	float yRotation;
 
-    Animator anim;
+	Animator anim;
 
-    public string playerTag;
-    // Use this for initialization
-    void Start() {
-        ShowRestartDialog(false);
-        rigi = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+	public string playerTag;
+	// Use this for initialization
+	void Start() {
+		ShowRestartDialog(false);
+		rigi = GetComponent<Rigidbody2D>();
+		anim = GetComponent<Animator>();
 
 		if (blockButton == KeyCode.None) {
 			blockButton = KeyCode.B;
 		}
-        
-    }
-	
+
+	}
+
 	// Update is called once per frame
 	void Update () {
 		CheckHealth ();
-        yRotation = GameObject.FindGameObjectWithTag(playerTag).gameObject.transform.rotation.y;
+		yRotation = GameObject.FindGameObjectWithTag(playerTag).gameObject.transform.rotation.y;
 		Blocking ();
+	}
+
+	void Blocking(){
+		if (Input.GetKeyUp (blockButton)) {
+			isBlocking = false;
+			canDamage = true;
+
+		}
+
+		else if (Input.GetKeyDown(blockButton)){
+			isBlocking = true;
+			canDamage = false;
+		}
+
 	}
 
 	void CheckHealth() {
@@ -47,65 +62,77 @@ public class HealthControl : MonoBehaviour {
 		}
 	}
 
-	void Blocking(){
-		if (Input.GetKey(blockButton)){
+	IEnumerator ApplyDamage(float dmg, float invTime)
+	{
+		if (canDamage == true) {
+
+			SubtractHealth (dmg);
 			canDamage = false;
+			anim.SetBool ("Damaged", true);
+			yield return new WaitForSeconds (invTime);
+			anim.SetBool ("Damaged", false);
+			canDamage = true;
+		} 
+		else if (canDamage == false) {
+			yield return new WaitForSeconds (invTime);
+		}
+
+	}
+
+	public void knockBack(float x, float y)
+	{
+		rigi.velocity = Vector3.zero;
+		if (yRotation == 0)
+		{
+			rigi.AddForce(new Vector2(x, y), ForceMode2D.Impulse);
+		}
+		else
+		{
+			rigi.AddForce(new Vector2(-x, y), ForceMode2D.Impulse);
 		}
 	}
-    
-	IEnumerator ApplyDamage(float dmg, float invTime)
-    {
-        SubtractHealth(dmg);
-        canDamage = false;
-        anim.SetBool("Damaged", true);
-        yield return new WaitForSeconds(invTime);
-        anim.SetBool("Damaged", false);
-        canDamage = true;
-    }
 
-    public void knockBack(float x, float y)
-    {
-        rigi.velocity = Vector3.zero;
-        if (yRotation == 0)
-        {
-            rigi.AddForce(new Vector2(x, y), ForceMode2D.Impulse);
-        }
-        else
-        {
-            rigi.AddForce(new Vector2(-x, y), ForceMode2D.Impulse);
-        }
-    }
-
-    // How to do damage, change the ApplyDamage to be depending on the move.
-    void OnTriggerEnter2D(Collider2D coll)
-    {
-        if (coll.gameObject.CompareTag("StandMed"))
-        {
-			if (canDamage == false) {
-				StartCoroutine (ApplyDamage (0, 0.25f));
-				knockBack (1, 0);
-			} 
-			else {
-				StartCoroutine (ApplyDamage (12, 0.75f));
+	// How to do damage, change the ApplyDamage to be depending on the move.
+	void OnTriggerEnter2D(Collider2D coll)
+	{
+		if (coll.gameObject.CompareTag("StandMed"))
+		{
+			if (isBlocking == false) {
+				StartCoroutine (ApplyDamage (12, 0.3f));
 				knockBack (3, 5);
+			} 
+			else if (isBlocking == true){
+
+				StartCoroutine (ApplyDamage (0, 0.1f));
+				knockBack (1, 0);
 			}
-        }
-        if (coll.gameObject.CompareTag("StandHeavy"))
-        {
-			if (canDamage)
-            {
-                StartCoroutine(ApplyDamage(25, 1.2f));
-                knockBack(5, 10);
-            }
-        }
-        if (coll.gameObject.CompareTag("LightKick"))
-        {
-            if (canDamage)
-            {
-                StartCoroutine(ApplyDamage(9, 0.3f));
-                knockBack(2, 2);
-            }
-        }
+		}
+		if (coll.gameObject.CompareTag("StandHeavy"))
+		{
+			if (isBlocking == false)
+			{
+				StartCoroutine(ApplyDamage(25, 1.2f));
+				knockBack(5, 10);
+			}
+			else if (isBlocking == true){
+
+				StartCoroutine (ApplyDamage (0, 0.1f));
+				knockBack (5, 0);
+			}
+		}
+		if (coll.gameObject.CompareTag("LightKick"))
+		{
+			if (isBlocking == false)
+			{
+				StartCoroutine(ApplyDamage(9, 0.3f));
+				knockBack(2, 2);
+			}
+			else if (isBlocking == true){
+
+				StartCoroutine (ApplyDamage (0, 0.1f));
+				knockBack (2, 0);
+			}
+		}
 		if (coll.gameObject.CompareTag("Fireball"))
 		{
 			if (canDamage)
@@ -113,6 +140,7 @@ public class HealthControl : MonoBehaviour {
 				StartCoroutine(ApplyDamage(8, 0.3f));
 				knockBack(1, 0);
 			}
+
 		}
 		if (coll.gameObject.CompareTag("JumpHeavy"))
 		{
@@ -122,9 +150,9 @@ public class HealthControl : MonoBehaviour {
 				knockBack(3, 0);
 			}
 		}
-    }
+	}
 
-    public void AddHealth(float amount) {
+	public void AddHealth(float amount) {
 		if (health + amount > 100.0f) {
 			health = 100.0f;
 		} 
@@ -152,10 +180,10 @@ public class HealthControl : MonoBehaviour {
 	}
 
 	public void Restart() {
-        SceneManager.LoadScene("FighterScene");
+		SceneManager.LoadScene("FighterScene");
 	}
 
-    /*
+	/*
     public IEnumerator KnockBack(float knockDur, float knockPwr, Vector2 knockDir)
     {
         float timer = 0;
