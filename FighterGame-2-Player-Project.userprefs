@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-<<<<<<< HEAD
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HealthControl.cs">
 =======
 <<<<<<< HEAD
@@ -11,14 +11,21 @@
       <File FileName="Assets/Scripts/HealthControl.cs" Line="165" Column="20" />
 =======
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+=======
+>>>>>>> origin/master
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerMovement.cs">
 >>>>>>> origin/master
     <Files>
+<<<<<<< HEAD
       <File FileName="Assets/Scripts/HealthControl.cs" Line="1" Column="1" />
 <<<<<<< HEAD
       <File FileName="Assets/Scripts/PlayerMovement.cs" Line="178" Column="44" />
 =======
 >>>>>>> origin/master
+>>>>>>> origin/master
+=======
+      <File FileName="Assets/Scripts/PlayerMovement.cs" Line="84" Column="3" />
+      <File FileName="Assets/Scripts/HealthControl.cs" Line="1" Column="1" />
 >>>>>>> origin/master
     </Files>
   </MonoDevelop.Ide.Workbench>
