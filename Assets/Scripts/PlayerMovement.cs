@@ -35,13 +35,15 @@ public class PlayerMovement : MonoBehaviour
 
 	public float dashDistance;
 
-
-
-
+<<<<<<< HEAD
+	void Start()
+	{
+		anim = GetComponent<Animator>();
+=======
     void Start()
     {
         anim = GetComponent<Animator>();
-
+>>>>>>> origin/master
 		if (projectileShoot == KeyCode.None) {
 			projectileShoot = KeyCode.U;
 		}
@@ -69,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
 		if (attackFour == KeyCode.None) {
 			attackFour = KeyCode.J;
 		}
-
+<<<<<<< HEAD
 	}
 
 	void Update()
@@ -79,9 +81,23 @@ public class PlayerMovement : MonoBehaviour
 		Jump ();
 	}
 
+	/// <summary>
+	/// attackRate is changed per attack. Set attack[] to whichever attack needed. Attack names are seperate, just remember which attack is which.
+	/// Also remember to change HealthControl to affect how much dmg is done, its in seperate script.
+	/// attackRate also needs to be precise or else hitbox will hit multipletimes. Change Times Pressed to make spamming not-working.
+	/// </summary>
+	void AttackInput()
+	{
+		//StandMed
+=======
+    }
 
-
-  
+    void Update()
+    {
+        Movement();
+        AttackInput();
+		Jump ();
+    }
 
     /// <summary>
     /// attackRate is changed per attack. Set attack[] to whichever attack needed. Attack names are seperate, just remember which attack is which.
@@ -91,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
     void AttackInput()
     {
         //StandMed
-
+>>>>>>> origin/master
 		if (Input.GetKeyDown(attackOne))
 		{
 			//if (anim.GetFloat("Movement") < 0.1f) //Only allows this attack when not moving.
@@ -196,13 +212,13 @@ public class PlayerMovement : MonoBehaviour
 			}
 		}
 		//JumpingHeavyPunch (To Make it Work in the Air, Now modify JumpingAttacks to the number of the Attack you want,
-
+<<<<<<< HEAD
 		// e.g JumpingHeavyPunch is now Float 1.0f, while regular jumping is 0.0f.
 		if (Input.GetKeyDown(attackFour) && canJumpingAttack == true)
-
+=======
 		// e.g JumpingHeavyPunch is now Float 0.5f, while regular jumping is 0.0f.
 		if (Input.GetKeyDown(attackFour))
-
+>>>>>>> origin/master
 		{
 			if ((anim.GetFloat ("Movement") < 0.1f && anim.GetBool("OnGround") == false)
 				|| anim.GetBool("OnGround") == false && anim.GetFloat("Movement") > 0.1f)
