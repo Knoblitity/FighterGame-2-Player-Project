@@ -32,16 +32,11 @@ public class PlayerMovement : MonoBehaviour
 	public KeyCode jumpButton;
 	public KeyCode dashButton;
 
-
 	public float dashDistance;
-
-
 
     void Start()
     {
         anim = GetComponent<Animator>();
-
-
 		if (projectileShoot == KeyCode.None) {
 			projectileShoot = KeyCode.U;
 		}
@@ -69,9 +64,6 @@ public class PlayerMovement : MonoBehaviour
 		if (attackFour == KeyCode.None) {
 			attackFour = KeyCode.J;
 		}
-
-
-
     }
 
     void Update()
@@ -88,8 +80,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void AttackInput()
     {
-
-		//StandMed
+        //StandMed
 		if (Input.GetKeyDown(attackOne))
         {
             if (anim.GetFloat("Movement") < 0.1f) //Only allows this attack when not moving.
@@ -184,7 +175,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 		//JumpingHeavyPunch (To Make it Work in the Air, Now modify JumpingAttacks to the number of the Attack you want,
-		// e.g JumpingHeavyPunch is now Float 1.0f, while regular jumping is 0.0f.
+		// e.g JumpingHeavyPunch is now Float 0.5f, while regular jumping is 0.0f.
 		if (Input.GetKeyDown(attackFour))
 		{
 			if ((anim.GetFloat ("Movement") < 0.1f && anim.GetBool("OnGround") == false)
