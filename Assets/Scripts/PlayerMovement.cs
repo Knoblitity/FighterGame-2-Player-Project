@@ -4,24 +4,23 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
 
-	// Update is called once per frame
-	public float speed = 10f;
+    // Update is called once per frame
+    public float speed = 10f;
 
-	Animator anim;
+    Animator anim;
 
-	//change array number to fix number of attacks.
-	private float attackRate;
-	bool[] attack = new bool[5];
-	float[] attackTimer = new float[5]; // These arrays
-	int[] timesPressed = new int[5];
-	public bool canJumpingAttack = true;
-	public bool attacking = false;
+    //change array number to fix number of attacks.
+    private float attackRate;
+    bool[] attack = new bool[5];
+    float[] attackTimer = new float[5]; // These arrays
+    int[] timesPressed = new int[5];
 
-	public Transform firePoint;
-	public GameObject fireBall;
+    public Transform firePoint;
+    public GameObject fireBall;
 
 	public float jumpHeight;
 	public bool isJumping = false;
+	private bool canDash;
 
 	public KeyCode projectileShoot;
 	public KeyCode attackOne;
@@ -35,15 +34,9 @@ public class PlayerMovement : MonoBehaviour
 
 	public float dashDistance;
 
-<<<<<<< HEAD
-	void Start()
-	{
-		anim = GetComponent<Animator>();
-=======
     void Start()
     {
         anim = GetComponent<Animator>();
->>>>>>> origin/master
 		if (projectileShoot == KeyCode.None) {
 			projectileShoot = KeyCode.U;
 		}
@@ -71,25 +64,6 @@ public class PlayerMovement : MonoBehaviour
 		if (attackFour == KeyCode.None) {
 			attackFour = KeyCode.J;
 		}
-<<<<<<< HEAD
-	}
-
-	void Update()
-	{
-		Movement();
-		AttackInput();
-		Jump ();
-	}
-
-	/// <summary>
-	/// attackRate is changed per attack. Set attack[] to whichever attack needed. Attack names are seperate, just remember which attack is which.
-	/// Also remember to change HealthControl to affect how much dmg is done, its in seperate script.
-	/// attackRate also needs to be precise or else hitbox will hit multipletimes. Change Times Pressed to make spamming not-working.
-	/// </summary>
-	void AttackInput()
-	{
-		//StandMed
-=======
     }
 
     void Update()
@@ -107,118 +81,102 @@ public class PlayerMovement : MonoBehaviour
     void AttackInput()
     {
         //StandMed
->>>>>>> origin/master
 		if (Input.GetKeyDown(attackOne))
-		{
-			//if (anim.GetFloat("Movement") < 0.1f) //Only allows this attack when not moving.
-			//{
-			attack[0] = true;
-			attackTimer[0] = 0;
-			timesPressed[0]++;
-			anim.SetBool("Attack0", true);
-			attacking = true;
+        {
+            if (anim.GetFloat("Movement") < 0.1f) //Only allows this attack when not moving.
+            {
+                attack[0] = true;
+                attackTimer[0] = 0;
+                timesPressed[0]++;
+                anim.SetBool("Attack0", true);
+            }
+        }
 
-			//}
-		}
-
-		if (attack[0])
-		{
-			attackRate = 0.5f; //attack rate here works for StandMed.
-			attackTimer[0] += Time.deltaTime;
-			if (attackTimer[0] > attackRate || timesPressed[0] >= 100) //after 3 presses, attack animation cuts, but no one can hit that fast.
-			{
-				attackTimer[0] = 0;
-				attack[0] = false;
-				timesPressed[0] = 0;
-				anim.SetBool("Attack0", false);
-				attacking = false;
-
-			}
-		}
-		//StandHeavy
+        if (attack[0])
+        {
+            attackRate = 0.3f; //attack rate here works for StandMed.
+            attackTimer[0] += Time.deltaTime;
+            if (attackTimer[0] > attackRate || timesPressed[0] >= 3) //after 3 presses, attack animation cuts, but no one can hit that fast.
+            {
+                attackTimer[0] = 0;
+                attack[0] = false;
+                timesPressed[0] = 0;
+                anim.SetBool("Attack0", false);
+            }
+        }
+        //StandHeavy
 		if (Input.GetKeyDown(attackTwo))
-		{
-			//if (anim.GetFloat("Movement") < 0.1f)
-			//{
-			attack[1] = true;
-			attackTimer[1] = 0;
-			timesPressed[1]++;
-			anim.SetBool("Attack1", true);
-			attacking = true;
-			//}
-		}
-		if (attack[1])
-		{
-			attackRate = 1.2f;
-			attackTimer[1] += Time.deltaTime;
-			if (attackTimer[1] > attackRate || timesPressed[1] >= 7)
-			{
-				attackTimer[1] = 0;
-				attack[1] = false;
-				timesPressed[1] = 0;
-				anim.SetBool("Attack1", false);
-				attacking = false;
-			}
-		}
-		//LightKick
+        {
+            if (anim.GetFloat("Movement") < 0.1f)
+            {
+                attack[1] = true;
+                attackTimer[1] = 0;
+                timesPressed[1]++;
+                anim.SetBool("Attack1", true);
+            }
+        }
+        if (attack[1])
+        {
+            attackRate = 1.2f;
+            attackTimer[1] += Time.deltaTime;
+            if (attackTimer[1] > attackRate || timesPressed[1] >= 7)
+            {
+                attackTimer[1] = 0;
+                attack[1] = false;
+                timesPressed[1] = 0;
+                anim.SetBool("Attack1", false);
+            }
+        }
+        //LightKick
 		if (Input.GetKeyDown(attackThree))
-		{
-			//if (anim.GetFloat("Movement") < 0.1f)
-			//{
-			attack[2] = true;
-			attackTimer[2] = 0;
-			timesPressed[2]++;
-			anim.SetBool("Attack2", true);
-			attacking = true;
-			//}
-		}
-		if (attack[2])
-		{
-			attackRate = 0.4f;
-			attackTimer[2] += Time.deltaTime;
-			if (attackTimer[2] > attackRate || timesPressed[2] >= 6)
-			{
-				attackTimer[2] = 0;
-				attack[2] = false;
-				timesPressed[2] = 0;
-				anim.SetBool("Attack2", false);
-				attacking = false;
-			}
-		}
+        {
+            if (anim.GetFloat("Movement") < 0.1f)
+            {
+                attack[2] = true;
+                attackTimer[2] = 0;
+                timesPressed[2]++;
+                anim.SetBool("Attack2", true);
+            }
+        }
+        if (attack[2])
+        {
+            attackRate = 0.2f;
+            attackTimer[2] += Time.deltaTime;
+            if (attackTimer[2] > attackRate || timesPressed[2] >= 3)
+            {
+                attackTimer[2] = 0;
+                attack[2] = false;
+                timesPressed[2] = 0;
+                anim.SetBool("Attack2", false);
+            }
+        }
 		//FireballShoot
 		if (Input.GetKeyDown(projectileShoot))
-		{
+        {
 			if (anim.GetFloat ("Movement") < 0.1f)
 			{
 				attack [3] = true;
 				attackTimer [3] = 0;
 				timesPressed [3]++;
 				anim.SetBool ("Attack3", true);
-				attacking = true;
 			}
-		}
-		if (attack[3])
-		{
-			attackRate = 0.45f;
-			attackTimer[3] += Time.deltaTime;
-			if (attackTimer[3] > attackRate || timesPressed[3] >= 5)
-			{
-				Instantiate(fireBall, firePoint.position, firePoint.rotation);
-				attackTimer[3] = 0;
-				attack[3] = false;
-				timesPressed[3] = 0;
+        }
+        if (attack[3])
+        {
+            attackRate = 0.45f;
+            attackTimer[3] += Time.deltaTime;
+            if (attackTimer[3] > attackRate || timesPressed[3] >= 5)
+            {
+                Instantiate(fireBall, firePoint.position, firePoint.rotation);
+                attackTimer[3] = 0;
+                attack[3] = false;
+                timesPressed[3] = 0;
 				anim.SetBool("Attack3", false);
-				attacking = false;
-			}
-		}
+            }
+        }
 		//JumpingHeavyPunch (To Make it Work in the Air, Now modify JumpingAttacks to the number of the Attack you want,
-<<<<<<< HEAD
-		// e.g JumpingHeavyPunch is now Float 1.0f, while regular jumping is 0.0f.
-		if (Input.GetKeyDown(attackFour) && canJumpingAttack == true)
-=======
 		// e.g JumpingHeavyPunch is now Float 0.5f, while regular jumping is 0.0f.
 		if (Input.GetKeyDown(attackFour))
->>>>>>> origin/master
 		{
 			if ((anim.GetFloat ("Movement") < 0.1f && anim.GetBool("OnGround") == false)
 				|| anim.GetBool("OnGround") == false && anim.GetFloat("Movement") > 0.1f)
@@ -226,7 +184,7 @@ public class PlayerMovement : MonoBehaviour
 				attack [4] = true;
 				attackTimer [4] = 0;
 				timesPressed [4]++;
-				anim.SetFloat ("JumpingAttacks", 1.0f);
+				anim.SetFloat ("JumpingAttacks", 0.5f);
 			}
 		}
 		if (attack[4])
@@ -239,17 +197,16 @@ public class PlayerMovement : MonoBehaviour
 				attack[4] = false;
 				timesPressed[4] = 0;
 				anim.SetFloat("JumpingAttacks", 0.0f);
-				canJumpingAttack = false;
 			}
 		}
 
-	}
+    }
 
-	void Movement()
-	{
-		if (isJumping == false && attacking == false) 
+     void Movement()
+    {
+		if (isJumping == false) 
 		{
-
+			
 			if (Input.GetKey (rightMove)) 
 			{
 				transform.Translate (Vector2.right * speed * Time.deltaTime);
@@ -269,15 +226,31 @@ public class PlayerMovement : MonoBehaviour
 		}
 		if (Input.GetKeyDown (dashButton) && Input.GetKey (rightMove))
 		{
-			StartCoroutine (DashRight ());
-		}
+			if (isJumping && canDash) {
+				StartCoroutine (DashRight ());
+				canDash = false;
+			} 
+			else if (!isJumping)
+			{
+				StartCoroutine (DashRight ());
+			}
 
+		}
+	
 		if (Input.GetKeyDown (dashButton) && Input.GetKey (leftMove))
 		{
-			StartCoroutine (DashLeft ());
-		}
+			if (isJumping && canDash) {
+				StartCoroutine (DashLeft ());
+				canDash = false;
+			} 
+			else if (!isJumping)
+			{
+				StartCoroutine (DashLeft ());
+			}
 
-	}
+		}
+		
+    }
 	void Jump()
 	{
 		if (Input.GetKeyDown (jumpButton) && Input.GetKeyDown (rightMove) && isJumping == false) 
@@ -286,7 +259,6 @@ public class PlayerMovement : MonoBehaviour
 			GetComponent<Rigidbody2D> ().velocity = new Vector2( Mathf.Cos(45)*4, Mathf.Sin(45));
 			anim.SetBool ("OnGround", false);
 			isJumping = true;
-			canJumpingAttack = true;
 		}
 		else if (Input.GetKeyDown (jumpButton) && Input.GetKeyDown (leftMove) && isJumping == false) 
 		{
@@ -294,7 +266,6 @@ public class PlayerMovement : MonoBehaviour
 			GetComponent<Rigidbody2D> ().velocity = new Vector2( Mathf.Cos(45)*-4, Mathf.Sin(45));
 			anim.SetBool ("OnGround", false);
 			isJumping = true;
-			canJumpingAttack = true;
 		}
 
 		else if (Input.GetKeyDown (jumpButton) && isJumping == false) 
@@ -302,7 +273,6 @@ public class PlayerMovement : MonoBehaviour
 			GetComponent<Rigidbody2D> ().AddForce ((Vector2.up * jumpHeight));
 			anim.SetBool ("OnGround", false);
 			isJumping = true;
-			canJumpingAttack = true;
 		}
 
 	}
@@ -312,17 +282,27 @@ public class PlayerMovement : MonoBehaviour
 		if(col.gameObject.tag == "Ground")
 		{
 			isJumping = false;
+			canDash = true;
 			anim.SetBool("OnGround", true);
 		}
 	}
-
+		
 	IEnumerator DashRight()
 	{
 		GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 		GetComponent<Rigidbody2D> ().AddForce ((Vector2.right * dashDistance));
-		anim.SetBool ("Dashing", true);
+		if (isJumping) {
+			transform.eulerAngles = new Vector3 (0, 180, 0);
+			anim.SetFloat ("JumpingAttacks", 1f);
+		} 
+		else 
+		{
+			anim.SetBool ("Dashing", true);
+		}
 		yield return new WaitForSeconds (0.25f);
 		anim.SetBool ("Dashing", false);
+		anim.SetFloat ("JumpingAttacks", 0.0f);
+		transform.eulerAngles = new Vector3 (0, 0, 0);
 		GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 	}
 
@@ -330,9 +310,18 @@ public class PlayerMovement : MonoBehaviour
 	{
 		GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 		GetComponent<Rigidbody2D> ().AddForce ((Vector2.left * dashDistance));
-		anim.SetBool ("Dashing", true);
+		if (isJumping) {
+			transform.eulerAngles = new Vector3 (0, 0, 0);
+			anim.SetFloat ("JumpingAttacks", 1f);
+		}
+		else 
+		{
+			anim.SetBool ("Dashing", true);
+		}
 		yield return new WaitForSeconds (0.25f);
 		anim.SetBool ("Dashing", false);
+		anim.SetFloat ("JumpingAttacks", 0.0f);
+		transform.eulerAngles = new Vector3 (0, 180, 0);
 		GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 	}
 }
