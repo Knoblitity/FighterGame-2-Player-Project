@@ -13,6 +13,7 @@ public class HealthControl : MonoBehaviour {
                           //to combo and others to not.
 
 	public KeyCode blockButton;
+	public bool isBlocking;
 
 	Rigidbody2D rigi;
     float yRotation;
@@ -39,6 +40,20 @@ public class HealthControl : MonoBehaviour {
 		Blocking ();
 	}
 
+	void Blocking(){
+		if (Input.GetKeyUp (blockButton)) {
+			isBlocking = false;
+			canDamage = true;
+
+		}
+
+		else if (Input.GetKeyDown(blockButton)){
+			isBlocking = true;
+			canDamage = false;
+		}
+
+	}
+
 	void CheckHealth() {
 		healthBar.rectTransform.localScale = new Vector3 (health / 100, healthBar.rectTransform.localScale.y,
 			healthBar.rectTransform.localScale.z);
@@ -47,20 +62,21 @@ public class HealthControl : MonoBehaviour {
 		}
 	}
 
-	void Blocking(){
-		if (Input.GetKey(blockButton)){
-			canDamage = false;
-		}
-	}
-    
 	IEnumerator ApplyDamage(float dmg, float invTime)
     {
-        SubtractHealth(dmg);
-        canDamage = false;
-        anim.SetBool("Damaged", true);
-        yield return new WaitForSeconds(invTime);
-        anim.SetBool("Damaged", false);
-        canDamage = true;
+		if (canDamage == true) {
+			
+			SubtractHealth (dmg);
+			canDamage = false;
+			anim.SetBool ("Damaged", true);
+			yield return new WaitForSeconds (invTime);
+			anim.SetBool ("Damaged", false);
+			canDamage = true;
+		} 
+		else if (canDamage == false) {
+			yield return new WaitForSeconds (invTime);
+		}
+
     }
 
     public void knockBack(float x, float y)
@@ -81,30 +97,38 @@ public class HealthControl : MonoBehaviour {
     {
         if (coll.gameObject.CompareTag("StandMed"))
         {
-			if (canDamage == false) {
-				StartCoroutine (ApplyDamage (0, 0.25f));
-				knockBack (1, 0);
-			} 
-			else {
-				StartCoroutine (ApplyDamage (12, 0.75f));
+			if (isBlocking == false) {
+				StartCoroutine (ApplyDamage (12, 0.3f));
 				knockBack (3, 5);
+			} 
+			else if (isBlocking == true){
+				
+				StartCoroutine (ApplyDamage (0, 0.1f));
+				knockBack (2, 0);
 			}
         }
         if (coll.gameObject.CompareTag("StandHeavy"))
         {
-			if (canDamage)
-            {
-                StartCoroutine(ApplyDamage(25, 1.2f));
-                knockBack(5, 10);
-            }
+			if (isBlocking == false) {
+				StartCoroutine (ApplyDamage (25, 1.2f));
+				knockBack (5, 10);
+			}
+			else if (isBlocking == true) {
+				StartCoroutine (ApplyDamage (0, 0.5f));
+				knockBack (4, 0);
+			}
         }
         if (coll.gameObject.CompareTag("LightKick"))
         {
-            if (canDamage)
-            {
-                StartCoroutine(ApplyDamage(9, 0.3f));
-                knockBack(2, 2);
-            }
+			if (isBlocking == false) {
+				StartCoroutine (ApplyDamage (9, 0.3f));
+				knockBack (2, 2);
+			}
+			else if (isBlocking == true) {
+				StartCoroutine (ApplyDamage (0, 0.1f));
+				knockBack (1, 0);
+			
+			}
         }
 		if (coll.gameObject.CompareTag("Fireball"))
 		{
