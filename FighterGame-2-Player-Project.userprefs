@@ -1,18 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerMovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HealthControl.cs">
     <Files>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-      <File FileName="Assets/Scripts/PlayerMovement.cs" Line="324" Column="48" />
-      <File FileName="Assets/Scripts/FireBallController.cs" Line="1" Column="1" />
-=======
-      <File FileName="Assets/Scripts/PlayerMovement.cs" Line="295" Column="36" />
->>>>>>> parent of f249880... Unity Stuff
-=======
-      <File FileName="Assets/Scripts/PlayerMovement.cs" Line="14" Column="33" />
-      <File FileName="Assets/Scripts/HealthControl.cs" Line="85" Column="45" />
->>>>>>> Stashed changes
+      <File FileName="Assets/Scripts/PlayerMovement.cs" Line="102" Column="61" />
+      <File FileName="Assets/Scripts/HealthControl.cs" Line="165" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
