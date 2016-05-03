@@ -279,14 +279,20 @@ public class PlayerMovement : MonoBehaviour
 
 	void OnCollisionEnter2D(Collision2D col)
 	{
-		if(col.gameObject.tag == "Ground" || col.gameObject.tag == "Player" || col.gameObject.tag == "Player2" )
-		{
+		if (col.gameObject.tag == "Ground") {
 			isJumping = false;
 			canDash = true;
-			anim.SetBool("OnGround", true);
+			anim.SetBool ("OnGround", true);
+		} 
+		if (col.gameObject.tag == "JumpPoint") 
+		{
+			//GetComponent<Rigidbody2D> ().AddForce ((Vector2.left * 200));
+			isJumping = false;
+			canDash = true;
+			anim.SetBool ("OnGround", true);
 		}
 	}
-		
+
 	IEnumerator DashRight()
 	{
 		GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
