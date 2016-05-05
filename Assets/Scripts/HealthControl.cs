@@ -137,8 +137,16 @@ public class HealthControl : MonoBehaviour {
 		{
 			if (canDamage)
 			{
-				StartCoroutine(ApplyDamage(8, 0.3f));
-				knockBack(1, 0);
+				if (isBlocking == false) 
+				{
+					StartCoroutine (ApplyDamage (8, 0.3f));
+					knockBack (1, 0);
+				}
+				else if (isBlocking == true){
+
+					StartCoroutine (ApplyDamage (0, 0.1f));
+					knockBack (1, 0);
+				}
 			}
 
 		}
@@ -146,8 +154,16 @@ public class HealthControl : MonoBehaviour {
 		{
 			if (canDamage)
 			{
-				StartCoroutine(ApplyDamage(10, 0.3f));
-				knockBack(3, 0);
+				if (isBlocking == false)
+				{
+					StartCoroutine (ApplyDamage (10, 0.3f));
+					knockBack (3, 0);
+				}
+				else if (isBlocking == true){
+
+					StartCoroutine (ApplyDamage (0, 0.1f));
+					knockBack (3, 0);
+				}
 			}
 		}
 	}
