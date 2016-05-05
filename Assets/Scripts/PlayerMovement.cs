@@ -32,6 +32,9 @@ public class PlayerMovement : MonoBehaviour
 	public KeyCode jumpButton;
 	public KeyCode dashButton;
 
+	public Rigidbody2D player;
+	public Rigidbody2D otherPlayer;
+
 	public float dashDistance;
 
     void Start()
@@ -274,6 +277,19 @@ public class PlayerMovement : MonoBehaviour
 			anim.SetBool ("OnGround", false);
 			isJumping = true;
 		}
+		if (player.position.x + .5 > otherPlayer.position.x && player.position.x - .5 < otherPlayer.position.x) 
+		{
+			//left is 180 degrees
+			if (player.position.x < otherPlayer.position.x) {
+				player.AddForce (Vector2.left * 10);
+				otherPlayer.AddForce (Vector2.right * 10);
+			} 
+			else if (player.position.x > otherPlayer.position.x) 
+			{
+				player.AddForce (Vector2.right * 10);
+				otherPlayer.AddForce (Vector2.left * 10);
+			}
+		}
 
 	}
 
@@ -284,13 +300,6 @@ public class PlayerMovement : MonoBehaviour
 			canDash = true;
 			anim.SetBool ("OnGround", true);
 		} 
-		if (col.gameObject.tag == "JumpPoint") 
-		{
-			//GetComponent<Rigidbody2D> ().AddForce ((Vector2.left * 200));
-			isJumping = false;
-			canDash = true;
-			anim.SetBool ("OnGround", true);
-		}
 	}
 
 	IEnumerator DashRight()
